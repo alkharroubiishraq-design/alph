@@ -1,0 +1,895 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Football Phonics Academy — دوسية حروف الأبجدية بروح الملعب</title>
+<meta name="description" content="دوسية مجانية لتعليم حروف الأبجدية الإنجليزية للأطفال بأسلوب كرة القدم. ٢٦ حرف، ٩٣ صفحة أنشطة، تلوين وتتبع وألعاب. تحميل PDF مجاني.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Oswald:wght@400;500;600;700&family=Cairo:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --pitch-ink:#071B15;
+    --pitch-dark:#0B3B2C;
+    --pitch-mid:#136240;
+    --pitch-mid-2:#1B7A4E;
+    --turf:#8FD858;
+    --turf-soft:#C9F1A0;
+    --gold:#F2B807;
+    --gold-deep:#C98F02;
+    --cream:#FBF6E9;
+    --cream-2:#F2ECDA;
+    --red:#E4433B;
+    --ink:#0E2A20;
+    --line: rgba(251,246,233,0.16);
+    --shadow-lg: 0 30px 60px -20px rgba(4,20,14,0.55);
+    --shadow-sm: 0 10px 24px -12px rgba(4,20,14,0.35);
+    --radius: 22px;
+    --font-display: 'Anton', 'Cairo', sans-serif;
+    --font-arabic: 'Cairo', sans-serif;
+    --font-utility: 'Oswald', 'Cairo', sans-serif;
+  }
+
+  *{ box-sizing:border-box; }
+  html{ scroll-behavior:smooth; }
+  body{
+    margin:0;
+    background:var(--cream);
+    color:var(--ink);
+    font-family:var(--font-arabic);
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  img{ max-width:100%; display:block; }
+  a{ color:inherit; text-decoration:none; }
+  section{ position:relative; }
+  .wrap{ max-width:1180px; margin:0 auto; padding-inline:24px; }
+
+  @media (prefers-reduced-motion: reduce){
+    *{ animation-duration:0.001ms !important; animation-iteration-count:1 !important; transition-duration:0.001ms !important; scroll-behavior:auto !important; }
+  }
+
+  /* ---------- utility bits ---------- */
+  .eyebrow{
+    display:inline-flex; align-items:center; gap:8px;
+    font-family:var(--font-utility); font-weight:600; letter-spacing:.06em;
+    font-size:13px; text-transform:uppercase;
+    background:rgba(251,246,233,0.1);
+    border:1px solid rgba(251,246,233,0.25);
+    color:var(--cream);
+    padding:8px 16px; border-radius:100px;
+  }
+  .eyebrow .dot{ width:7px; height:7px; border-radius:50%; background:var(--turf); box-shadow:0 0 0 4px rgba(143,216,88,0.25); }
+
+  .btn-ticket{
+    --tw: 320px;
+    position:relative;
+    display:inline-flex; align-items:stretch;
+    width:min(var(--tw), 100%);
+    background:linear-gradient(180deg,#FFD43B, var(--gold) 55%, var(--gold-deep));
+    border-radius:16px;
+    box-shadow: var(--shadow-lg), inset 0 1px 0 rgba(255,255,255,0.6);
+    text-decoration:none;
+    overflow:visible;
+    isolation:isolate;
+    transition: transform .25s ease, box-shadow .25s ease;
+  }
+  .btn-ticket:hover{ transform: translateY(-4px) scale(1.015); box-shadow: 0 34px 60px -14px rgba(4,20,14,0.5), inset 0 1px 0 rgba(255,255,255,0.7); }
+  .btn-ticket:active{ transform: translateY(-1px) scale(0.99); }
+  .btn-ticket .stub{
+    flex:0 0 64px;
+    display:flex; align-items:center; justify-content:center;
+    border-inline-end:2px dashed rgba(11,59,44,0.45);
+    position:relative;
+  }
+  .btn-ticket .stub span{
+    font-family:var(--font-utility); font-weight:700; letter-spacing:.3em;
+    writing-mode:vertical-rl; text-orientation:mixed;
+    font-size:12px; color:var(--pitch-dark);
+    text-transform:uppercase;
+  }
+  .btn-ticket .stub::before,
+  .btn-ticket .stub::after{
+    content:""; position:absolute; inset-inline-end:-11px;
+    width:22px; height:22px; border-radius:50%;
+    background:var(--bg-cut, var(--cream));
+  }
+  .btn-ticket .stub::before{ top:-11px; }
+  .btn-ticket .stub::after{ bottom:-11px; }
+  .btn-ticket .main{
+    flex:1;
+    display:flex; align-items:center; justify-content:space-between; gap:12px;
+    padding:16px 20px;
+  }
+  .btn-ticket .main .txt{ text-align:start; }
+  .btn-ticket .main .txt b{
+    display:block; font-family:var(--font-arabic); font-weight:800;
+    font-size:17px; color:var(--pitch-dark); line-height:1.3;
+  }
+  .btn-ticket .main .txt small{
+    display:block; font-family:var(--font-utility); font-weight:600;
+    letter-spacing:.08em; font-size:11px; color:rgba(11,59,44,0.75); text-transform:uppercase; margin-top:2px;
+  }
+  .btn-ticket .arrow{
+    flex:0 0 auto; width:38px; height:38px; border-radius:50%;
+    background:var(--pitch-dark); color:var(--gold);
+    display:flex; align-items:center; justify-content:center;
+    font-size:18px;
+  }
+
+  /* pitch stripes background */
+  .pitch-stripes{
+    background-image: repeating-linear-gradient(90deg, rgba(255,255,255,0.035) 0 60px, transparent 60px 120px);
+  }
+
+  /* ================= HEADER ================= */
+  header.site{
+    position:sticky; top:0; z-index:50;
+    background:rgba(7,27,21,0.0);
+    transition: background .35s ease, box-shadow .35s ease, backdrop-filter .35s ease;
+  }
+  header.site.scrolled{
+    background:rgba(7,27,21,0.92);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 8px 24px -12px rgba(0,0,0,0.4);
+  }
+  .nav-inner{
+    display:flex; align-items:center; justify-content:space-between;
+    padding-block:14px;
+  }
+  .brand{ display:flex; align-items:center; gap:10px; }
+  .brand .crest{
+    width:38px; height:38px; border-radius:50%;
+    background:radial-gradient(circle at 35% 30%, var(--turf-soft), var(--pitch-mid) 60%, var(--pitch-dark));
+    display:flex; align-items:center; justify-content:center;
+    color:var(--cream); font-family:var(--font-display); font-size:15px;
+    box-shadow: inset 0 0 0 2px rgba(251,246,233,0.35);
+  }
+  .brand .word{ direction:ltr; color:var(--cream); line-height:1.05; }
+  .brand .word b{ font-family:var(--font-display); font-size:15px; letter-spacing:.02em; display:block; }
+  .brand .word span{ font-family:var(--font-utility); font-size:9.5px; letter-spacing:.22em; color:var(--gold); text-transform:uppercase; }
+  .nav-cta{
+    display:inline-flex; align-items:center; gap:8px;
+    background:var(--gold); color:var(--pitch-dark);
+    font-family:var(--font-arabic); font-weight:800; font-size:14px;
+    padding:10px 18px; border-radius:100px;
+    box-shadow: var(--shadow-sm);
+    transition: transform .2s ease;
+  }
+  .nav-cta:hover{ transform:translateY(-2px); }
+
+  /* ================= HERO ================= */
+  .hero{
+    background:
+      radial-gradient(900px 500px at 12% -10%, rgba(143,216,88,0.18), transparent 60%),
+      radial-gradient(700px 420px at 100% 0%, rgba(242,184,7,0.16), transparent 55%),
+      linear-gradient(180deg, var(--pitch-ink), var(--pitch-dark) 45%, var(--pitch-mid-2) 130%);
+    color:var(--cream);
+    padding-top:64px;
+    overflow:hidden;
+  }
+  .hero .floodlight{
+    position:absolute; top:-120px; width:340px; height:340px; border-radius:50%;
+    background:radial-gradient(circle, rgba(255,255,255,0.35), rgba(255,255,255,0) 65%);
+    filter:blur(6px);
+    opacity:.55;
+    animation: glow 6s ease-in-out infinite;
+  }
+  .hero .floodlight.l{ left:-90px; }
+  .hero .floodlight.r{ right:-90px; animation-delay:1.4s; }
+  @keyframes glow{ 0%,100%{ opacity:.35; } 50%{ opacity:.65; } }
+
+  .hero-grid{
+    position:relative; z-index:2;
+    display:grid; grid-template-columns: 1.15fr 0.85fr; gap:48px;
+    align-items:center;
+    padding-block: 56px 88px;
+  }
+  @media (max-width: 900px){
+    .hero-grid{ grid-template-columns:1fr; padding-block:32px 56px; }
+  }
+
+  .hero h1{
+    margin:20px 0 6px;
+    font-family:var(--font-display);
+    direction:ltr; text-align:start;
+    font-size:clamp(34px, 6vw, 66px);
+    line-height:0.98; letter-spacing:.01em;
+    color:var(--cream);
+    text-shadow: 0 2px 0 rgba(0,0,0,0.15);
+  }
+  .hero h1 em{
+    font-style:normal;
+    background:linear-gradient(180deg, #FFE38A, var(--gold) 70%);
+    -webkit-background-clip:text; background-clip:text; color:transparent;
+  }
+  .hero .sub{
+    font-size:clamp(16px, 2.1vw, 19px);
+    line-height:1.85;
+    color:rgba(251,246,233,0.88);
+    max-width:52ch;
+    margin:14px 0 28px;
+  }
+  .hero .sub b{ color:var(--turf-soft); font-weight:800; }
+
+  .stat-row{
+    display:flex; flex-wrap:wrap; gap:10px 14px;
+    margin-bottom:32px;
+  }
+  .stat-chip{
+    display:flex; align-items:baseline; gap:6px;
+    background:rgba(251,246,233,0.06);
+    border:1px solid rgba(251,246,233,0.18);
+    border-radius:12px;
+    padding:9px 14px;
+  }
+  .stat-chip b{ font-family:var(--font-display); font-size:19px; color:var(--gold); }
+  .stat-chip span{ font-family:var(--font-utility); font-size:11px; letter-spacing:.05em; color:rgba(251,246,233,0.75); }
+
+  .hero-credit{
+    margin-top:20px; font-size:14px; color:rgba(251,246,233,0.65);
+  }
+  .hero-credit b{ color:var(--cream); }
+
+  .hero-visual{ position:relative; }
+  .poster{
+    position:relative;
+    max-width:360px; margin-inline:auto;
+    transform:rotate(2.5deg);
+    border-radius:14px;
+    box-shadow: var(--shadow-lg);
+    border:8px solid var(--cream);
+    background:var(--cream);
+  }
+  .poster img{ border-radius:6px; }
+  .poster .pin{
+    position:absolute; top:-14px; left:50%; transform:translateX(-50%);
+    width:26px; height:26px; border-radius:50%;
+    background:radial-gradient(circle at 35% 30%, #ff8a80, var(--red) 70%);
+    box-shadow:0 6px 10px rgba(0,0,0,0.35);
+  }
+  .poster .free-tag{
+    position:absolute; bottom:-16px; right:-16px;
+    background:var(--red); color:#fff;
+    font-family:var(--font-display); font-size:14px; letter-spacing:.03em;
+    padding:10px 16px; border-radius:50%; width:78px; height:78px;
+    display:flex; align-items:center; justify-content:center; text-align:center; line-height:1.15;
+    transform:rotate(8deg);
+    box-shadow: var(--shadow-sm);
+    border:3px solid var(--cream);
+  }
+
+  .hook{
+    display:inline-block;
+    font-family:var(--font-arabic); font-weight:800; font-size:clamp(15px,1.9vw,17px);
+    color:var(--gold);
+    background:rgba(242,184,7,0.1);
+    border:1px solid rgba(242,184,7,0.35);
+    border-radius:12px;
+    padding:10px 16px;
+    margin:0 0 16px;
+    line-height:1.6;
+  }
+
+  .pain{ padding-block:70px; background:var(--cream-2); }
+  .pain-grid{
+    display:grid; grid-template-columns:0.42fr 1fr; gap:40px; align-items:center;
+  }
+  @media (max-width:760px){ .pain-grid{ grid-template-columns:1fr; text-align:center; } }
+  .pain-badge{
+    display:flex; flex-direction:column; align-items:center; justify-content:center; gap:10px;
+    background:#fff; border:1px solid rgba(11,59,44,0.1); border-radius:20px;
+    padding:34px 18px;
+    box-shadow: 0 18px 34px -22px rgba(11,59,44,0.35);
+  }
+  .pain-badge .card-icon{
+    width:64px; height:88px; border-radius:6px;
+    background:linear-gradient(160deg, #FFD43B, var(--gold));
+    box-shadow: var(--shadow-sm);
+    display:flex; align-items:center; justify-content:center; font-size:26px;
+  }
+  .pain-badge span{ font-family:var(--font-utility); font-weight:600; font-size:13px; color:var(--pitch-mid); text-align:center; }
+  .pain h2{ font-family:var(--font-arabic); font-weight:800; font-size:clamp(22px,3vw,30px); margin:0 0 12px; color:var(--pitch-ink); }
+  .pain p{ font-size:16px; line-height:1.85; color:#3c5449; max-width:56ch; margin:0; }
+  @media (max-width:760px){ .pain p{ margin-inline:auto; } }
+
+  .hero-cta-row{ display:flex; flex-wrap:wrap; gap:16px; align-items:center; }
+  .hero-note{ font-size:13px; color:rgba(251,246,233,0.6); display:flex; align-items:center; gap:8px; }
+  .hero-note svg{ flex:0 0 auto; }
+
+  /* ================= section headers ================= */
+  .section-head{ max-width:640px; margin-bottom:44px; }
+  .section-head .eyebrow-dark{
+    display:inline-flex; align-items:center; gap:8px;
+    font-family:var(--font-utility); font-weight:600; letter-spacing:.08em; text-transform:uppercase;
+    font-size:12.5px; color:var(--pitch-mid);
+    background:rgba(19,98,64,0.08); border:1px solid rgba(19,98,64,0.18);
+    padding:7px 14px; border-radius:100px; margin-bottom:16px;
+  }
+  .section-head h2{
+    font-family:var(--font-arabic); font-weight:800;
+    font-size:clamp(26px, 3.6vw, 40px);
+    line-height:1.3; margin:0 0 12px;
+    color:var(--pitch-ink);
+  }
+  .section-head p{ font-size:16.5px; line-height:1.85; color:#3c5449; margin:0; }
+
+  /* ================= FEATURES ================= */
+  .features{ padding-block:88px 70px; background:var(--cream); }
+  .feature-grid{
+    display:grid; grid-template-columns:repeat(4, 1fr); gap:20px;
+  }
+  @media (max-width:980px){ .feature-grid{ grid-template-columns:repeat(2,1fr); } }
+  @media (max-width:560px){ .feature-grid{ grid-template-columns:1fr; } }
+
+  .feature-card{
+    background:#fff;
+    border:1px solid rgba(11,59,44,0.08);
+    border-radius:20px;
+    padding:26px 22px;
+    box-shadow: 0 18px 34px -22px rgba(11,59,44,0.35);
+    transition: transform .3s ease, box-shadow .3s ease;
+    position:relative;
+    overflow:hidden;
+  }
+  .feature-card::before{
+    content:""; position:absolute; inset-inline-start:0; top:0; bottom:0; width:5px;
+    background:linear-gradient(180deg, var(--turf), var(--pitch-mid));
+  }
+  .feature-card:hover{ transform:translateY(-6px); box-shadow: 0 28px 44px -20px rgba(11,59,44,0.4); }
+  .feature-card .num{
+    font-family:var(--font-display); font-size:13px; color:var(--gold-deep);
+    letter-spacing:.1em; margin-bottom:10px; display:block;
+  }
+  .feature-card .icon{
+    width:46px; height:46px; border-radius:12px;
+    background:linear-gradient(160deg, var(--pitch-mid-2), var(--pitch-dark));
+    display:flex; align-items:center; justify-content:center;
+    margin-bottom:16px; color:var(--turf-soft);
+  }
+  .feature-card h3{ font-size:18px; font-weight:800; margin:0 0 8px; color:var(--pitch-ink); }
+  .feature-card p{ font-size:14.5px; line-height:1.8; color:#4c6459; margin:0; }
+
+  /* ================= GALLERY ================= */
+  .gallery{
+    padding-block:90px;
+    background:
+      radial-gradient(700px 380px at 90% 0%, rgba(242,184,7,0.12), transparent 60%),
+      linear-gradient(180deg, var(--pitch-ink), var(--pitch-dark));
+    color:var(--cream);
+  }
+  .gallery .section-head h2, .gallery .section-head p{ color:var(--cream); }
+  .gallery .section-head p{ color:rgba(251,246,233,0.75); }
+  .gallery .eyebrow-dark{ color:var(--turf-soft); background:rgba(143,216,88,0.1); border-color:rgba(143,216,88,0.28); }
+
+  .film-strip{
+    display:flex; gap:22px; overflow-x:auto; padding:10px 4px 24px;
+    scroll-snap-type:x proximity;
+  }
+  .film-strip::-webkit-scrollbar{ height:8px; }
+  .film-strip::-webkit-scrollbar-thumb{ background:rgba(251,246,233,0.25); border-radius:8px; }
+
+  .photo{
+    flex:0 0 auto; width:240px; scroll-snap-align:start;
+    background:var(--cream); border-radius:8px; padding:10px 10px 34px;
+    box-shadow: var(--shadow-lg);
+    position:relative;
+  }
+  .photo:nth-child(odd){ transform:rotate(-3deg); }
+  .photo:nth-child(even){ transform:rotate(2.2deg); }
+  .photo:hover{ transform:rotate(0deg) scale(1.04); z-index:5; }
+  .photo{ transition: transform .35s ease; }
+  .photo img{ border-radius:2px; }
+  .photo .tape{
+    position:absolute; top:-10px; left:50%; transform:translateX(-50%) rotate(-2deg);
+    width:64px; height:22px;
+    background:rgba(255,255,255,0.55);
+    border:1px solid rgba(255,255,255,0.7);
+  }
+  .photo figcaption{
+    position:absolute; bottom:10px; inset-inline:10px;
+    font-family:var(--font-utility); font-size:11.5px; letter-spacing:.02em;
+    color:var(--pitch-ink); text-align:center;
+  }
+
+  /* ================= ALPHABET ROSTER ================= */
+  .roster{ padding-block:90px; background:var(--cream-2); }
+  .roster-grid{
+    display:grid; grid-template-columns:repeat(13, 1fr); gap:10px;
+  }
+  @media (max-width:900px){ .roster-grid{ grid-template-columns:repeat(9,1fr); } }
+  @media (max-width:560px){ .roster-grid{ grid-template-columns:repeat(6,1fr); } }
+
+  .jersey{
+    aspect-ratio:1/1;
+    border-radius:12px;
+    background:#fff;
+    border:1px solid rgba(11,59,44,0.12);
+    display:flex; align-items:center; justify-content:center;
+    font-family:var(--font-display); font-size:clamp(15px,2vw,20px);
+    color:var(--pitch-mid);
+    box-shadow: 0 8px 16px -10px rgba(11,59,44,0.25);
+    transition: transform .22s ease, background .22s ease, color .22s ease, box-shadow .22s ease;
+    cursor:default;
+  }
+  .jersey:hover{
+    transform: translateY(-5px) scale(1.06);
+    background:linear-gradient(160deg, var(--gold), var(--gold-deep));
+    color:var(--pitch-ink);
+    box-shadow: 0 16px 26px -12px rgba(201,143,2,0.55);
+  }
+
+  .roster-foot{ margin-top:26px; display:flex; align-items:center; gap:10px; color:#3c5449; font-size:14.5px; }
+
+  /* ================= COACH ================= */
+  .coach{
+    padding-block:90px;
+    background: linear-gradient(180deg, var(--pitch-mid-2), var(--pitch-mid));
+    color:var(--cream);
+  }
+  .coach-grid{
+    display:grid; grid-template-columns:0.5fr 1fr; gap:52px; align-items:center;
+  }
+  @media (max-width:860px){ .coach-grid{ grid-template-columns:1fr; text-align:center; } }
+
+  .badge{
+    width:190px; height:190px; border-radius:50%;
+    margin-inline:auto;
+    background:radial-gradient(circle at 32% 28%, var(--turf-soft), var(--pitch-mid) 55%, var(--pitch-ink) 100%);
+    display:flex; align-items:center; justify-content:center;
+    box-shadow: var(--shadow-lg), inset 0 0 0 6px rgba(251,246,233,0.14);
+    position:relative;
+  }
+  .badge span{ font-family:var(--font-display); font-size:52px; color:var(--cream); direction:ltr; }
+  .badge .armband{
+    position:absolute; top:14px; inset-inline-end:14px;
+    background:var(--gold); color:var(--pitch-ink);
+    font-family:var(--font-utility); font-weight:700; font-size:11px;
+    padding:4px 9px; border-radius:100px; letter-spacing:.05em;
+  }
+
+  .coach h2{ font-family:var(--font-arabic); font-weight:800; font-size:clamp(24px,3.2vw,34px); margin:0 0 14px; }
+  .coach p.bio{ font-size:16px; line-height:1.9; color:rgba(251,246,233,0.88); max-width:56ch; margin:0 0 24px; }
+  @media (max-width:860px){ .coach p.bio{ margin-inline:auto; } }
+
+  .contact-row{ display:flex; flex-wrap:wrap; gap:12px; }
+  @media (max-width:860px){ .contact-row{ justify-content:center; } }
+  .contact-chip{
+    display:inline-flex; align-items:center; gap:9px;
+    background:rgba(251,246,233,0.08);
+    border:1px solid rgba(251,246,233,0.22);
+    padding:10px 16px; border-radius:100px;
+    font-size:14px; font-weight:600;
+    transition: background .2s ease, transform .2s ease;
+  }
+  .contact-chip:hover{ background:rgba(251,246,233,0.16); transform:translateY(-2px); }
+  .contact-chip b{ direction:ltr; unicode-bidi:embed; }
+
+  /* ================= FINAL CTA ================= */
+  .final-cta{
+    padding-block:96px;
+    position:relative;
+    background:
+      radial-gradient(650px 340px at 50% 0%, rgba(255,255,255,0.12), transparent 60%),
+      linear-gradient(135deg, var(--pitch-ink), var(--pitch-dark) 55%, #0c4a2f);
+    color:var(--cream); text-align:center;
+    overflow:hidden;
+  }
+  .final-cta .wrap{ position:relative; z-index:2; }
+  .final-cta h2{
+    font-family:var(--font-display); direction:ltr;
+    font-size:clamp(30px,5vw,54px); margin:14px 0 12px; line-height:1.05;
+    color:var(--cream);
+  }
+  .final-cta h2 em{
+    font-style:normal;
+    background:linear-gradient(180deg,#FFE38A, var(--gold) 70%);
+    -webkit-background-clip:text; background-clip:text; color:transparent;
+  }
+  .final-cta p{ font-size:16.5px; color:rgba(251,246,233,0.82); max-width:52ch; margin:0 auto 34px; line-height:1.8; }
+  .final-cta .btn-ticket{ margin-inline:auto; }
+
+  .whistle-line{
+    position:absolute; inset:0; opacity:.5; pointer-events:none;
+    background-image: radial-gradient(circle, rgba(255,255,255,0.5) 1px, transparent 1.4px);
+    background-size: 26px 26px;
+    mask-image: radial-gradient(circle at 50% 30%, black, transparent 65%);
+  }
+
+  /* ================= FOOTER ================= */
+  footer{
+    background:var(--pitch-ink); color:rgba(251,246,233,0.72);
+    padding-block:44px 30px;
+  }
+  .footer-grid{
+    display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:20px;
+    padding-bottom:24px; border-bottom:1px solid rgba(251,246,233,0.12);
+  }
+  .footer-links{ display:flex; gap:18px; flex-wrap:wrap; font-size:14px; }
+  .footer-links a:hover{ color:var(--gold); }
+  .footer-bottom{
+    padding-top:20px; display:flex; flex-wrap:wrap; justify-content:space-between; gap:10px;
+    font-size:12.5px; color:rgba(251,246,233,0.5);
+  }
+
+  /* fade-up on scroll */
+  .reveal{ opacity:0; transform:translateY(26px); transition: opacity .7s ease, transform .7s ease; }
+  .reveal.in{ opacity:1; transform:translateY(0); }
+</style>
+</head>
+<body>
+
+<header class="site" id="siteHeader">
+  <div class="wrap nav-inner">
+    <div class="brand">
+      <div class="crest">⚽</div>
+      <div class="word">
+        <b>Football Phonics</b>
+        <span>The Academy</span>
+      </div>
+    </div>
+    <a class="nav-cta js-pdf-link" href="assets/Football-Phonics-Academy-Workbook.pdf" download="Football-Phonics-Academy-Workbook.pdf">
+      تحميل مجاني
+      <span style="font-family:'Oswald';font-size:12px;">PDF</span>
+    </a>
+  </div>
+</header>
+
+<section class="hero pitch-stripes">
+  <div class="floodlight l"></div>
+  <div class="floodlight r"></div>
+  <div class="wrap hero-grid">
+    <div>
+      <span class="eyebrow"><span class="dot"></span> دوسية تعليمية مجانية بالكامل</span>
+      <h1>The Football<br>Phonics <em>Academy</em></h1>
+      <p class="hook">🚨 لا تخيّري طفلك بين الدراسة ولعب الطابة… خليهم مع بعض! 🚨</p>
+      <p class="sub">دوسية تعليم <b>حروف الأبجدية الإنجليزية</b> للأطفال، بروح ملعب كرة القدم — كل حرف إله لاعب، وكل صفحة إلها تمرين وتدريب وهدف. تعلم ممتع من A إلى Z.</p>
+
+      <div class="stat-row">
+        <div class="stat-chip"><b>26</b><span>حرف كامل</span></div>
+        <div class="stat-chip"><b>93</b><span>صفحة نشاط</span></div>
+        <div class="stat-chip"><b>4-8</b><span>سنوات</span></div>
+        <div class="stat-chip"><b>PDF</b><span>جاهز للطباعة</span></div>
+      </div>
+
+      <div class="hero-cta-row">
+        <a class="btn-ticket js-pdf-link" href="assets/Football-Phonics-Academy-Workbook.pdf" download="Football-Phonics-Academy-Workbook.pdf">
+          <span class="stub"><span>TICKET</span></span>
+          <span class="main">
+            <span class="txt"><b>حمّل الدوسية الآن</b><small>Free Download · PDF</small></span>
+            <span class="arrow">↓</span>
+          </span>
+        </a>
+      </div>
+      <p class="hero-note">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="10"/></svg>
+        بدون تسجيل، بدون بريد إلكتروني — تحميل مباشر ومجاني تماماً
+      </p>
+      <p class="hero-credit">بإعداد المعلمة <b>إشراق الخروبي</b></p>
+    </div>
+
+    <div class="hero-visual reveal">
+      <div class="poster">
+        <div class="pin"></div>
+        <img src="assets/cover.jpg" alt="غلاف دوسية The Football Phonics Academy">
+        <div class="free-tag">مجاناً<br>100%</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="pain">
+  <div class="wrap pain-grid">
+    <div class="pain-badge reveal">
+      <div class="card-icon">🟨</div>
+      <span>بطاقة صفراء للملل!</span>
+    </div>
+    <div class="reveal">
+      <span class="eyebrow-dark">وقفة صريحة</span>
+      <h2>بيملّ بسرعة؟ بيهرب من القلم والدفتر؟</h2>
+      <p>احنا فهمنا وجعكم. رمينا الطرق التقليدية برا الملعب، وصممنا معسكر تدريبي كامل يخلّي وقت الدراسة هو الشوط المفضل عند طفلك باليوم — مو واجب، مباراة.</p>
+    </div>
+  </div>
+</section>
+
+<section class="features">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow-dark">ليش هاي الدوسية؟</span>
+      <h2>تدريب حقيقي على الحروف… بس بأجواء المباراة</h2>
+      <p>صممنا كل حرف متل تمرين في معسكر تدريب: صوت، حركة، رسم، ولعبة. الطفل ما بيحفظ الحرف، هو بيعيشه.</p>
+    </div>
+
+    <div class="feature-grid">
+      <div class="feature-card reveal">
+        <span class="num">01</span>
+        <div class="icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 3v3M12 18v3M3 12h3M18 12h3"/></svg>
+        </div>
+        <h3>حرف = مصطلح كروي</h3>
+        <p>A for Arena، B for Ball، G for Goal… كل حرف مرتبط بكلمة من الملعب، فبيرن بذاكرة الطفل أسرع.</p>
+      </div>
+
+      <div class="feature-card reveal">
+        <span class="num">02</span>
+        <div class="icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 20l4-1 10-10-3-3L5 16l-1 4z"/></svg>
+        </div>
+        <h3>تتبّع كتابة موجّه</h3>
+        <p>أسهم واضحة لكل حرف كبير وصغير، متل تكتيك المدرب على السبورة، خطوة خطوة لحد ما يتقنه.</p>
+      </div>
+
+      <div class="feature-card reveal">
+        <span class="num">03</span>
+        <div class="icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16v12H4z"/><path d="M9 20h6M12 16v4"/></svg>
+        </div>
+        <h3>ألعاب ونشاطات متنوعة</h3>
+        <p>تلوين، متاهات، توصيل الحروف، بحث عن الأحرف المخفية، وبطاقات "ماتش داي" بعد كل حرف.</p>
+      </div>
+
+      <div class="feature-card reveal">
+        <span class="num">04</span>
+        <div class="icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 15a4 4 0 100-8 4 4 0 000 8z"/><path d="M6 21c1-3 3.5-4.5 6-4.5S17 18 18 21"/></svg>
+        </div>
+        <h3>بطاقة اللاعب المحترف</h3>
+        <p>آخر صفحة بالدوسية هي بطاقة "Pro Player" خاصة بطفلك — يحط صورته عليها ويحس إنه بطل حقيقي أنهى المعسكر بامتياز.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="gallery">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow-dark">لقطات من الملعب</span>
+      <h2>جولة سريعة داخل الدوسية</h2>
+      <p>شوية صفحات من غرفة الملابس — كل حرف إله جلسة تدريب كاملة: تعريف، صوت، كتابة، ولعبة ختامية.</p>
+    </div>
+
+    <div class="film-strip reveal">
+      <figure class="photo"><span class="tape"></span><img src="assets/cover.jpg" alt="الغلاف"><figcaption>الغلاف</figcaption></figure>
+      <figure class="photo"><span class="tape"></span><img src="assets/letter-a.jpg" alt="الحرف A"><figcaption>A is for Arena</figcaption></figure>
+      <figure class="photo"><span class="tape"></span><img src="assets/letter-c.jpg" alt="تلوين الحرف C"><figcaption>Cc — تلوين الكأس</figcaption></figure>
+      <figure class="photo"><span class="tape"></span><img src="assets/letter-g.jpg" alt="الحرف G"><figcaption>Gg — Goalkeeper</figcaption></figure>
+      <figure class="photo"><span class="tape"></span><img src="assets/letter-m.jpg" alt="متاهة الحرف M"><figcaption>Mm — متاهة الوسط</figcaption></figure>
+      <figure class="photo"><span class="tape"></span><img src="assets/letter-s.jpg" alt="الحرف S"><figcaption>Ss — Score</figcaption></figure>
+      <figure class="photo"><span class="tape"></span><img src="assets/letter-w.jpg" alt="الحرف W"><figcaption>Ww — Whistle</figcaption></figure>
+      <figure class="photo"><span class="tape"></span><img src="assets/final-card.jpg" alt="بطاقة اللاعب الختامية"><figcaption>بطاقة اللاعب المحترف</figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<section class="roster">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow-dark">تشكيلة الفريق</span>
+      <h2>٢٦ حرف… ٢٦ لاعب أساسي</h2>
+      <p>كل حروف الأبجدية الإنجليزية موجودة، من أول صافرة بداية لحد كأس البطولة الأخير.</p>
+    </div>
+
+    <div class="roster-grid reveal" id="rosterGrid"></div>
+
+    <p class="roster-foot">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l3 6 6 .9-4.5 4.3 1 6-5.5-3-5.5 3 1-6L3 8.9 9 8z"/></svg>
+      كل حرف بالدوسية إله صفحة تعريف + صفحة تتبّع كتابة + صفحة نشاط أو لعبة
+    </p>
+  </div>
+</section>
+
+<section class="coach">
+  <div class="wrap coach-grid">
+    <div class="reveal">
+      <div class="badge">
+        <span class="armband">Coach</span>
+        <span>إ.خ</span>
+      </div>
+    </div>
+    <div class="reveal">
+      <h2>من المدرّبة إشراق الخروبي</h2>
+      <p class="bio">معلّمة متخصصة بتعليم اللغة الإنجليزية للأطفال، صمّمت هاي الدوسية عشان تخلي تعلّم الحروف تجربة حماسية متل يوم مباراة حقيقي — لكل طفل بحب الكرة، وكل أهل بدهم طريقة مختلفة يعلّموا فيها ولادهم.</p>
+      <div class="contact-row">
+        <a class="contact-chip" href="https://wa.me/962790146621" target="_blank" rel="noopener">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 00-8.5 15.2L2 22l4.9-1.5A10 10 0 1012 2z" opacity=".25"/><path d="M17 14.2c-.3-.2-1.8-.9-2-1s-.5-.1-.7.1-.8 1-.9 1.1-.3.2-.5.1a7 7 0 01-3.6-3.1c-.3-.5.3-.5.7-1.6.1-.2 0-.4 0-.6L9 7.2c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 00-.7.3 3 3 0 00-1 2.3c0 1.4 1 2.7 1.1 2.9.1.2 2 3.2 5 4.4 2.6 1.1 2.6.7 3.1.6a2.6 2.6 0 001.7-1.2c.2-.4.2-.7.1-.8z"/></svg>
+          <b dir="ltr">0790&nbsp;146&nbsp;621</b>
+        </a>
+        <a class="contact-chip" href="https://instagram.com/ishraqalkharoubi" target="_blank" rel="noopener">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg>
+          <b dir="ltr">@ishraqalkharoubi</b>
+        </a>
+        <a class="contact-chip" href="#" target="_blank" rel="noopener">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 3h-3a4 4 0 00-4 4v3H5v4h3v7h4v-7h3l1-4h-4V7a1 1 0 011-1h3z"/></svg>
+          صفحة الفيسبوك
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="final-cta">
+  <div class="whistle-line"></div>
+  <div class="wrap">
+    <span class="eyebrow"><span class="dot"></span> جاهزة للطباعة اليوم</span>
+    <h2>Let's <em>Kick Off!</em></h2>
+    <p>هاي الدوسية مو مجرد أوراق عمل، هي تذكرة VIP لتأسيس طفلك باللغة الإنجليزية بشغف وحب. أخذ تصميمها أسابيع، وقررنا نقدّمها هدية مجانية كاملة لكل أم وأب بدهم الأفضل لأطفالهم.</p>
+    <a class="btn-ticket js-pdf-link" href="assets/Football-Phonics-Academy-Workbook.pdf" download="Football-Phonics-Academy-Workbook.pdf">
+      <span class="stub"><span>TICKET</span></span>
+      <span class="main">
+        <span class="txt"><b>حمّل الدوسية — مجاناً</b><small>93 Pages · PDF</small></span>
+        <span class="arrow">↓</span>
+      </span>
+    </a>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-grid">
+      <div class="brand">
+        <div class="crest">⚽</div>
+        <div class="word">
+          <b>Football Phonics</b>
+          <span>The Academy</span>
+        </div>
+      </div>
+      <div class="footer-links">
+        <a href="#top">الرئيسية</a>
+        <a href="https://wa.me/962790146621" target="_blank" rel="noopener">واتساب</a>
+        <a href="https://instagram.com/ishraqalkharoubi" target="_blank" rel="noopener">إنستغرام</a>
+        <a class="nav-cta js-pdf-link" href="assets/Football-Phonics-Academy-Workbook.pdf" download="Football-Phonics-Academy-Workbook.pdf" style="padding:8px 16px;font-size:13px;">تحميل PDF</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© The Football Phonics Academy — إعداد المعلمة إشراق الخروبي</span>
+      <span>هاي الدوسية مقدَّمة مجاناً بالكامل لكل الأهل والمعلمين ❤️</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // header background on scroll
+  const header = document.getElementById('siteHeader');
+  window.addEventListener('scroll', () => {
+    header.classList.toggle('scrolled', window.scrollY > 30);
+  });
+
+  // reveal on scroll
+  const revealEls = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+  }, { threshold: 0.15 });
+  revealEls.forEach(el => io.observe(el));
+
+  // build alphabet roster
+  const roster = document.getElementById('rosterGrid');
+  const letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+  roster.innerHTML = [...letters].map(L => `<div class="jersey">${L}${L.toLowerCase()}</div>`).join('');
+</script>
+
+
+<div class="reg-overlay" id="regOverlay" aria-hidden="true">
+  <div class="reg-card" role="dialog" aria-modal="true" aria-labelledby="regTitle">
+    <button class="reg-close" id="regClose" aria-label="إغلاق">×</button>
+    <div class="reg-ball">⚽</div>
+    <h3 id="regTitle">سجّلي كابتنك الصغير بالفريق!</h3>
+    <p class="reg-sub">قبل ما تنزّلي الدوسية، عرّفينا عليه (اختياري)</p>
+    <label class="reg-field">
+      <span>📝 اسم الكابتن (الطفل)</span>
+      <input type="text" id="regName" placeholder="مثال: يوسف">
+    </label>
+    <label class="reg-field">
+      <span>📧 البريد الإلكتروني للأهل</span>
+      <input type="email" id="regEmail" placeholder="you@example.com">
+    </label>
+    <button class="reg-submit" id="regSubmit">⚽ أريد نسختي المجانية الآن!</button>
+    <button class="reg-skip" id="regSkip">تخطي والتحميل مباشرة</button>
+  </div>
+</div>
+
+<style>
+  .reg-overlay{
+    position:fixed; inset:0; z-index:200;
+    background:rgba(7,27,21,0.72);
+    display:none; align-items:center; justify-content:center;
+    padding:20px;
+    backdrop-filter: blur(4px);
+  }
+  .reg-overlay.open{ display:flex; }
+  .reg-card{
+    position:relative;
+    width:min(420px, 100%);
+    background:var(--cream);
+    border-radius:22px;
+    padding:34px 26px 28px;
+    text-align:center;
+    box-shadow: var(--shadow-lg);
+    animation: regPop .25s ease;
+  }
+  @keyframes regPop{ from{ transform:scale(.92); opacity:0; } to{ transform:scale(1); opacity:1; } }
+  .reg-close{
+    position:absolute; top:14px; inset-inline-end:14px;
+    width:32px; height:32px; border-radius:50%; border:none;
+    background:rgba(11,59,44,0.08); color:var(--pitch-ink);
+    font-size:18px; cursor:pointer; line-height:1;
+  }
+  .reg-ball{ font-size:38px; margin-bottom:6px; }
+  .reg-card h3{ font-family:var(--font-arabic); font-weight:800; font-size:21px; margin:0 0 6px; color:var(--pitch-ink); }
+  .reg-sub{ font-size:14.5px; color:#4c6459; margin:0 0 20px; }
+  .reg-field{ display:block; text-align:start; margin-bottom:14px; }
+  .reg-field span{ display:block; font-size:13.5px; font-weight:700; color:var(--pitch-ink); margin-bottom:6px; }
+  .reg-field input{
+    width:100%; padding:11px 14px; border-radius:10px;
+    border:1.5px solid rgba(11,59,44,0.18);
+    font-family:var(--font-arabic); font-size:14.5px;
+    background:#fff;
+  }
+  .reg-field input:focus{ outline:2px solid var(--pitch-mid); outline-offset:1px; }
+  .reg-submit{
+    width:100%; margin-top:6px;
+    background:linear-gradient(180deg,#FFD43B, var(--gold) 55%, var(--gold-deep));
+    border:none; border-radius:12px; padding:14px;
+    font-family:var(--font-arabic); font-weight:800; font-size:15.5px; color:var(--pitch-dark);
+    cursor:pointer; box-shadow: var(--shadow-sm);
+    transition: transform .2s ease;
+  }
+  .reg-submit:hover{ transform:translateY(-2px); }
+  .reg-skip{
+    display:block; width:100%; margin-top:12px;
+    background:none; border:none; color:#4c6459;
+    font-family:var(--font-arabic); font-size:13px; text-decoration:underline;
+    cursor:pointer;
+  }
+</style>
+
+
+<script>
+  (function() {
+    const PDF_PATH = 'assets/Football-Phonics-Academy-Workbook.pdf';
+
+    function triggerDownload() {
+      const a = document.createElement('a');
+      a.href = PDF_PATH;
+      a.download = 'Football-Phonics-Academy-Workbook.pdf';
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      closeModal();
+    }
+
+    function openModal() {
+      document.getElementById('regOverlay').classList.add('open');
+    }
+    function closeModal() {
+      document.getElementById('regOverlay').classList.remove('open');
+    }
+
+    function wireDownloads() {
+      document.querySelectorAll('.js-pdf-link').forEach(a => {
+        a.addEventListener('click', (e) => {
+          e.preventDefault();
+          openModal();
+        });
+      });
+
+      document.getElementById('regSubmit').addEventListener('click', triggerDownload);
+      document.getElementById('regSkip').addEventListener('click', triggerDownload);
+      document.getElementById('regClose').addEventListener('click', closeModal);
+      document.getElementById('regOverlay').addEventListener('click', (e) => {
+        if (e.target.id === 'regOverlay') closeModal();
+      });
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') closeModal();
+      });
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', wireDownloads);
+    } else {
+      wireDownloads();
+    }
+  })();
+</script>
+</body>
+</html>
