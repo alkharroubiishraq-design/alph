@@ -783,6 +783,10 @@
       <span>📧 البريد الإلكتروني للأهل</span>
       <input type="email" id="regEmail" placeholder="you@example.com">
     </label>
+    <label class="reg-field">
+      <span>📱 رقم الواتساب</span>
+      <input type="tel" id="regWhatsapp" placeholder="مثال: 07XXXXXXXX" inputmode="tel">
+    </label>
     <button class="reg-submit" id="regSubmit">⚽ أريد نسختي المجانية الآن!</button>
     <button class="reg-skip" id="regSkip">تخطي والتحميل مباشرة</button>
   </div>
@@ -873,7 +877,15 @@
         });
       });
 
-      document.getElementById('regSubmit').addEventListener('click', triggerDownload);
+      document.getElementById('regSubmit').addEventListener('click', () => {
+        const wa = document.getElementById('regWhatsapp').value.trim();
+        if (!wa) {
+          document.getElementById('regWhatsapp').focus();
+          document.getElementById('regWhatsapp').style.borderColor = '#e05252';
+          return;
+        }
+        triggerDownload();
+      });
       document.getElementById('regSkip').addEventListener('click', triggerDownload);
       document.getElementById('regClose').addEventListener('click', closeModal);
       document.getElementById('regOverlay').addEventListener('click', (e) => {
