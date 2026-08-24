@@ -874,7 +874,7 @@
 <script>
   (function() {
     const PDF_PATH = 'assets/Football-Phonics-Academy-Workbook.pdf';
-    const ACADEMY_WHATSAPP = '962790146621';
+    const SHEET_ENDPOINT = 'https://script.google.com/macros/s/AKfycbzXWq4GFMDiWCLmQI3b-BrGTA-KXJC3TLp7bPSZIEc1-2_N7PxdTTGWbY1S60W1SE8u/exec';
 
     function triggerDownload() {
       const a = document.createElement('a');
@@ -892,15 +892,17 @@
       document.getElementById('regOverlay').classList.remove('open');
     }
 
-    function sendRegistrationToWhatsapp(name, email, fullPhone) {
-      const lines = [
-        'تسجيل جديد - Football Phonics Academy ⚽',
-        `اسم الكابتن: ${name || 'غير محدد'}`,
-        `البريد الإلكتروني: ${email || 'غير محدد'}`,
-        `رقم الواتساب: +${fullPhone}`
-      ];
-      const msg = encodeURIComponent(lines.join('\n'));
-      window.open(`https://wa.me/${ACADEMY_WHATSAPP}?text=${msg}`, '_blank', 'noopener');
+    function sendRegistrationToSheet(name, email, fullPhone) {
+      fetch(SHEET_ENDPOINT, {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+        body: JSON.stringify({
+          name: name || '',
+          email: email || '',
+          phone: fullPhone ? ('+' + fullPhone) : ''
+        })
+      }).catch(() => {});
     }
 
     function wireDownloads() {
@@ -925,11 +927,9 @@
         const email = document.getElementById('regEmail').value.trim();
         const fullPhone = code + wa;
 
-        // نحمّل الملف أولاً بشكل متزامن قبل فتح واتساب،
-        // لأن الانتقال لتطبيق واتساب ممكن يوقف تنفيذ الكود اللي بعده
+        sendRegistrationToSheet(name, email, fullPhone);
         triggerDownload();
         closeModal();
-        sendRegistrationToWhatsapp(name, email, fullPhone);
       });
       document.getElementById('regSkip').addEventListener('click', () => {
         triggerDownload();
