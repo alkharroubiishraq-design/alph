@@ -883,7 +883,6 @@
       document.body.appendChild(a);
       a.click();
       document.body.removeChild(a);
-      closeModal();
     }
 
     function openModal() {
@@ -926,10 +925,16 @@
         const email = document.getElementById('regEmail').value.trim();
         const fullPhone = code + wa;
 
-        sendRegistrationToWhatsapp(name, email, fullPhone);
+        // نحمّل الملف أولاً بشكل متزامن قبل فتح واتساب،
+        // لأن الانتقال لتطبيق واتساب ممكن يوقف تنفيذ الكود اللي بعده
         triggerDownload();
+        closeModal();
+        sendRegistrationToWhatsapp(name, email, fullPhone);
       });
-      document.getElementById('regSkip').addEventListener('click', triggerDownload);
+      document.getElementById('regSkip').addEventListener('click', () => {
+        triggerDownload();
+        closeModal();
+      });
       document.getElementById('regClose').addEventListener('click', closeModal);
       document.getElementById('regOverlay').addEventListener('click', (e) => {
         if (e.target.id === 'regOverlay') closeModal();
