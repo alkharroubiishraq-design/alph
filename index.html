@@ -785,7 +785,21 @@
     </label>
     <label class="reg-field">
       <span>📱 رقم الواتساب</span>
-      <input type="tel" id="regWhatsapp" placeholder="مثال: 07XXXXXXXX" inputmode="tel">
+      <div class="reg-phone-row">
+        <select id="regCountryCode" class="reg-country-select">
+          <option value="962" selected>🇯🇴 962+</option>
+          <option value="966">🇸🇦 966+</option>
+          <option value="971">🇦🇪 971+</option>
+          <option value="965">🇰🇼 965+</option>
+          <option value="974">🇶🇦 974+</option>
+          <option value="973">🇧🇭 973+</option>
+          <option value="968">🇴🇲 968+</option>
+          <option value="20">🇪🇬 20+</option>
+          <option value="970">🇵🇸 970+</option>
+          <option value="961">🇱🇧 961+</option>
+        </select>
+        <input type="tel" id="regWhatsapp" placeholder="791234567" inputmode="tel">
+      </div>
     </label>
     <button class="reg-submit" id="regSubmit">⚽ أريد نسختي المجانية الآن!</button>
     <button class="reg-skip" id="regSkip">تخطي والتحميل مباشرة</button>
@@ -830,6 +844,15 @@
     background:#fff;
   }
   .reg-field input:focus{ outline:2px solid var(--pitch-mid); outline-offset:1px; }
+  .reg-phone-row{ display:flex; gap:8px; direction:ltr; }
+  .reg-phone-row input{ flex:1; text-align:left; }
+  .reg-country-select{
+    padding:11px 8px; border-radius:10px;
+    border:1.5px solid rgba(11,59,44,0.18);
+    font-family:var(--font-arabic); font-size:14.5px;
+    background:#fff; max-width:100px;
+  }
+  .reg-country-select:focus{ outline:2px solid var(--pitch-mid); outline-offset:1px; }
   .reg-submit{
     width:100%; margin-top:6px;
     background:linear-gradient(180deg,#FFD43B, var(--gold) 55%, var(--gold-deep));
@@ -851,6 +874,7 @@
 <script>
   (function() {
     const PDF_PATH = 'assets/Football-Phonics-Academy-Workbook.pdf';
+    const ACADEMY_WHATSAPP = '962790146621';
 
     function triggerDownload() {
       const a = document.createElement('a');
@@ -869,6 +893,17 @@
       document.getElementById('regOverlay').classList.remove('open');
     }
 
+    function sendRegistrationToWhatsapp(name, email, fullPhone) {
+      const lines = [
+        'تسجيل جديد - Football Phonics Academy ⚽',
+        `اسم الكابتن: ${name || 'غير محدد'}`,
+        `البريد الإلكتروني: ${email || 'غير محدد'}`,
+        `رقم الواتساب: +${fullPhone}`
+      ];
+      const msg = encodeURIComponent(lines.join('\n'));
+      window.open(`https://wa.me/${ACADEMY_WHATSAPP}?text=${msg}`, '_blank', 'noopener');
+    }
+
     function wireDownloads() {
       document.querySelectorAll('.js-pdf-link').forEach(a => {
         a.addEventListener('click', (e) => {
@@ -878,12 +913,20 @@
       });
 
       document.getElementById('regSubmit').addEventListener('click', () => {
-        const wa = document.getElementById('regWhatsapp').value.trim();
+        const waInput = document.getElementById('regWhatsapp');
+        const wa = waInput.value.trim().replace(/^0+/, '');
         if (!wa) {
-          document.getElementById('regWhatsapp').focus();
-          document.getElementById('regWhatsapp').style.borderColor = '#e05252';
+          waInput.focus();
+          waInput.style.borderColor = '#e05252';
           return;
         }
+        waInput.style.borderColor = '';
+        const code = document.getElementById('regCountryCode').value;
+        const name = document.getElementById('regName').value.trim();
+        const email = document.getElementById('regEmail').value.trim();
+        const fullPhone = code + wa;
+
+        sendRegistrationToWhatsapp(name, email, fullPhone);
         triggerDownload();
       });
       document.getElementById('regSkip').addEventListener('click', triggerDownload);
